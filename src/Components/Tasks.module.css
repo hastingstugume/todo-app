@@ -1,0 +1,15 @@
+.tasks {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.tasks th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4f005f;
+  color: white;
+}
+.complete {
+  background-color: #04aa6d;
+}

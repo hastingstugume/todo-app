@@ -1,23 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
-
+import AddTaskForm from "./Components/AddTaskForm";
+import React, { useState } from "react";
+import Tasks from "./Components/Tasks";
+import Card from "./Components/Helpers/Card";
+import styles from "./Components/AddTask.module.css";
+const dummy = [
+  {
+    title: "Lecture",
+    desc: "Attend BPM",
+    id: Math.random().toString(),
+    status: "New",
+  },
+  {
+    title: "Football",
+    desc: "Play turf",
+    id: Math.random().toString(),
+    status: "Inprogress",
+  },
+];
 function App() {
+  const [allTasks, setTasks] = useState(dummy);
+  const [show, setShow] = useState(true);
+  const addTaskHandler = () => {
+    setShow(false);
+  };
+  const showTasksHandler = () => {
+    setShow(true);
+  };
+
+  const taskHandler = (task) => {
+    setTasks((prevTask) => {
+      return [task, ...prevTask];
+    });
+    console.log(allTasks);
+    setShow(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Card className={styles["add-task"]}>
+        <h2>Tasks Monitor</h2>
+        <button onClick={showTasksHandler}>Show Tasks</button>
+        <button onClick={addTaskHandler}>Add New Task</button>
+      </Card>
+      {!show && <AddTaskForm onAddTask={taskHandler} />}
+      {show && <Tasks tasks={allTasks} />}
     </div>
   );
 }
