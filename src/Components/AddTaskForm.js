@@ -50,7 +50,7 @@ const AddTaskForm = (props) => {
             <option value="Complete">Complete</option>
           </select>
         </div>
-        <Button>Add Task</Button>
+        {title.length > 0 && desc.length > 0 && <Button>Add Task</Button>}
       </form>
     </Card>
   );
